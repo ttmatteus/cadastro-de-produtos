@@ -46,14 +46,25 @@ public class ProdutoView {
 
     public int obterIdProduto() {
         System.out.print("Digite o ID do produto: ");
-        return sc.nextInt();
+        int id = sc.nextInt();
+        sc.nextLine();
+        return id;
     }
 
     public String obterNomeProdutoExistente(Produto existente) {
-        System.out.print("Novo nome (" + existente.getNome() + "): ");
-        String nome = sc.nextLine();
-        return nome.isBlank() ? existente.getNome() : nome;
+        String nome;
+        while (true) {
+            System.out.print("Novo nome (" + existente.getNome() + "): ");
+            nome = sc.nextLine().trim();
+            if (nome.isBlank()) {
+                return existente.getNome();
+            }
+            if (ProdutoValidador.validarNome(nome)) {
+                return nome;
+            }
+        }
     }
+
 
     public double validarPreco(double precoAtual) {
         while (true) {

@@ -89,32 +89,30 @@ public class ProdutoDAO implements ProdutoDAOInterface {
             stmt.setDouble(2, produto.getPreco());
             stmt.setInt(3, produto.getQuantidade());
             stmt.setInt(4, produto.getId());
-            int linhasAfetadas = stmt.executeUpdate();
-            if (linhasAfetadas > 0) {
-                System.out.println("Produto atualizado com sucesso!");
-            } else {
-                System.out.println("Produto com ID " + produto.getId() + " não encontrado.");
-            }
+
+            stmt.executeUpdate();
+
+            System.out.println("Produto atualizado com sucesso.");
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar produto: " + e.getMessage());
         }
     }
+
 
     public void deletar(int id) {
         String sql = "DELETE FROM produto WHERE id = ?";
         try (Connection conn = ConexaoSingleton.getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
-            int linhasAfetadas = stmt.executeUpdate();
-            if (linhasAfetadas > 0) {
-                System.out.println("Produto deletado com sucesso.");
-            } else {
-                System.out.println("Nenhum produto com ID " + id + " foi encontrado.");
-            }
+
+            stmt.executeUpdate();
+
+            System.out.println("Produto deletado com sucesso.");
         } catch (SQLException e) {
             System.out.println("Erro ao deletar produto: " + e.getMessage());
         }
     }
+
 
     public Produto buscarPorId(int id) {
         String sql = "SELECT * FROM produto WHERE id = ?";

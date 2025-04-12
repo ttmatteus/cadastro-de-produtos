@@ -12,7 +12,7 @@ public class ProdutoController {
 
     public void iniciar() {
         Scanner sc = new Scanner(System.in);
-        int opcao;
+        int opcao = -1;
 
         do {
             System.out.println("\n--- MENU ---");
@@ -24,8 +24,14 @@ public class ProdutoController {
             System.out.println("6 - Exportar Produtos para CSV");
             System.out.println("0 - Sair");
             System.out.print("Escolha: ");
-            opcao = sc.nextInt();
-            sc.nextLine();
+
+            String input = sc.nextLine();
+            try {
+                opcao = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, insira um número válido.");
+                continue;
+            }
 
             switch (opcao) {
                 case 1 -> produtoFacade.cadastrarProduto();
