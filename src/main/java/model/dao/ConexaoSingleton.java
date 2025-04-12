@@ -29,13 +29,13 @@ public class ConexaoSingleton {
                 conexao = DriverManager.getConnection(url);
 
                 if (!isConectado) {
-                    System.out.println("✅ Conexão SQLite estabelecida com sucesso!");
+                    System.out.println("Conexão SQLite estabelecida com sucesso!");
                     isConectado = true;
                 }
             }
         } catch (IOException | SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("❌ Erro ao conectar com o banco de dados: " + e.getMessage());
+            throw new RuntimeException("Erro ao conectar com o banco de dados: " + e.getMessage());
         }
 
         return conexao;

@@ -35,7 +35,7 @@ public class ProdutoController {
                 case 5 -> produtoFacade.buscarPorId();
                 case 6 -> produtoFacade.exportarProdutosParaCSV();
                 case 0 -> System.out.println("Encerrando...");
-                default -> System.out.println("⚠️ Opção inválida. Tente novamente.");
+                default -> System.out.println("Opção inválida. Tente novamente.");
             }
         } while (opcao != 0);
         sc.close();

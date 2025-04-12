@@ -30,12 +30,12 @@ public class ProdutoFacade {
         p.setQuantidade(quantidade);
 
         if (dao.verificarProdutoExistente(p)) {
-            view.exibirMensagem("⚠️ Produto com nome '" + p.getNome() + "' já existe. Cadastro não realizado.");
+            view.exibirMensagem(" Produto com nome '" + p.getNome() + "' já existe. Cadastro não realizado.");
             return;
         }
 
         dao.salvar(p);
-        view.exibirMensagem("✅ Produto cadastrado com sucesso!");
+        view.exibirMensagem("Produto cadastrado com sucesso!");
     }
 
     public void listarProdutos() {
@@ -47,7 +47,7 @@ public class ProdutoFacade {
         int id = view.obterIdProduto();
         Produto existente = buscarPorId(id);
         if (existente == null) {
-            view.exibirMensagem("⚠️ Produto não encontrado.");
+            view.exibirMensagem("Produto não encontrado.");
             return;
         }
 
@@ -57,19 +57,19 @@ public class ProdutoFacade {
 
         Produto atualizado = new Produto(id, nome, preco, quantidade);
         dao.atualizar(atualizado);
-        view.exibirMensagem("✅ Produto atualizado com sucesso.");
+        view.exibirMensagem("Produto atualizado com sucesso.");
     }
 
     public void deletarProduto() {
         int id = view.obterIdProduto();
         Produto produto = buscarPorId(id);
         if (produto == null) {
-            view.exibirMensagem("⚠️ Produto não encontrado.");
+            view.exibirMensagem("Produto não encontrado.");
             return;
         }
 
         dao.deletar(id);
-        view.exibirMensagem("✅ Produto deletado com sucesso.");
+        view.exibirMensagem("Produto deletado com sucesso.");
     }
 
     public void buscarPorId() {

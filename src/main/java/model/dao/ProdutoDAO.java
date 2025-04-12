@@ -22,7 +22,7 @@ public class ProdutoDAO implements ProdutoDAOInterface {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("❌ Erro ao verificar produto existente: " + e.getMessage());
+            System.out.println("Erro ao verificar produto existente: " + e.getMessage());
         }
         return false;
     }
@@ -51,12 +51,12 @@ public class ProdutoDAO implements ProdutoDAOInterface {
             }
 
             printWriter.close();
-            System.out.println("✅ Produtos exportados para 'produtos.csv' com sucesso!");
+            System.out.println("Produtos exportados para 'produtos.csv' com sucesso!");
 
         } catch (SQLException e) {
-            System.out.println("❌ Erro ao acessar o banco de dados: " + e.getMessage());
+            System.out.println("Erro ao acessar o banco de dados: " + e.getMessage());
         } catch (IOException e) {
-            System.out.println("❌ Erro ao criar o arquivo CSV: " + e.getMessage());
+            System.out.println("Erro ao criar o arquivo CSV: " + e.getMessage());
         }
     }
 
@@ -64,7 +64,7 @@ public class ProdutoDAO implements ProdutoDAOInterface {
     @Override
     public void salvar(Produto produto) {
         if (verificarProdutoExistente(produto)) {
-            System.out.println("⚠️ Produto com nome '" + produto.getNome() + "' já existe. Cadastro não realizado.");
+            System.out.println("Produto com nome '" + produto.getNome() + "' já existe. Cadastro não realizado.");
             return;
         }
         String sql = "INSERT INTO produto (nome, preco, quantidade) VALUES (?, ?, ?)";
@@ -74,9 +74,9 @@ public class ProdutoDAO implements ProdutoDAOInterface {
             stmt.setDouble(2, produto.getPreco());
             stmt.setInt(3, produto.getQuantidade());
             stmt.executeUpdate();
-            System.out.println("✅ Produto salvo com sucesso!");
+            System.out.println("Produto salvo com sucesso!");
         } catch (SQLException e) {
-            System.out.println("❌ Erro ao salvar produto: " + e.getMessage());
+            System.out.println("Erro ao salvar produto: " + e.getMessage());
         }
     }
 
@@ -91,12 +91,12 @@ public class ProdutoDAO implements ProdutoDAOInterface {
             stmt.setInt(4, produto.getId());
             int linhasAfetadas = stmt.executeUpdate();
             if (linhasAfetadas > 0) {
-                System.out.println("✅ Produto atualizado com sucesso!");
+                System.out.println("Produto atualizado com sucesso!");
             } else {
-                System.out.println("⚠️ Produto com ID " + produto.getId() + " não encontrado.");
+                System.out.println("Produto com ID " + produto.getId() + " não encontrado.");
             }
         } catch (SQLException e) {
-            System.out.println("❌ Erro ao atualizar produto: " + e.getMessage());
+            System.out.println("Erro ao atualizar produto: " + e.getMessage());
         }
     }
 
@@ -107,12 +107,12 @@ public class ProdutoDAO implements ProdutoDAOInterface {
             stmt.setInt(1, id);
             int linhasAfetadas = stmt.executeUpdate();
             if (linhasAfetadas > 0) {
-                System.out.println("✅ Produto deletado com sucesso.");
+                System.out.println("Produto deletado com sucesso.");
             } else {
-                System.out.println("⚠️ Nenhum produto com ID " + id + " foi encontrado.");
+                System.out.println("Nenhum produto com ID " + id + " foi encontrado.");
             }
         } catch (SQLException e) {
-            System.out.println("❌ Erro ao deletar produto: " + e.getMessage());
+            System.out.println("Erro ao deletar produto: " + e.getMessage());
         }
     }
 
@@ -130,10 +130,10 @@ public class ProdutoDAO implements ProdutoDAOInterface {
                         rs.getInt("quantidade")
                 );
             } else {
-                System.out.println("⚠️ Produto com ID " + id + " não encontrado.");
+                System.out.println("Produto com ID " + id + " não encontrado.");
             }
         } catch (SQLException e) {
-            System.out.println("❌ Erro ao buscar produto: " + e.getMessage());
+            System.out.println("Erro ao buscar produto: " + e.getMessage());
         }
         return null;
     }
@@ -154,7 +154,7 @@ public class ProdutoDAO implements ProdutoDAOInterface {
                 produtos.add(p);
             }
         } catch (SQLException e) {
-            System.out.println("❌ Erro ao listar produtos: " + e.getMessage());
+            System.out.println("Erro ao listar produtos: " + e.getMessage());
         }
         return produtos;
     }
@@ -168,9 +168,9 @@ public class ProdutoDAO implements ProdutoDAOInterface {
         try (Connection conn = ConexaoSingleton.getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.executeUpdate();
-            System.out.println("✅ Tabela 'produto' verificada/criada com sucesso.");
+            System.out.println("Tabela 'produto' verificada/criada com sucesso.");
         } catch (SQLException e) {
-            System.out.println("❌ Erro ao criar a tabela: " + e.getMessage());
+            System.out.println("Erro ao criar a tabela: " + e.getMessage());
         }
     }
 }

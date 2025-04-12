@@ -25,37 +25,23 @@ public class ProdutoView {
     }
 
     public double obterPrecoProduto() {
-        double preco;
         while (true) {
             System.out.print("Preço do Produto: ");
             String precoStr = sc.nextLine().trim();
-            try {
-                preco = Double.parseDouble(precoStr);
-                if (ProdutoValidador.validarPreco(preco)) {
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("⚠️ Por favor, insira um valor numérico válido para o preço.");
+            if (ProdutoValidador.validarPreco(precoStr)) {
+                return Double.parseDouble(precoStr);
             }
         }
-        return preco;
     }
 
     public int obterQuantidadeProduto() {
-        int quantidade;
         while (true) {
             System.out.print("Quantidade em Estoque: ");
             String qtdStr = sc.nextLine().trim();
-            try {
-                quantidade = Integer.parseInt(qtdStr);
-                if (ProdutoValidador.validarQuantidade(quantidade)) {
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("⚠️ Por favor, insira um valor numérico válido para a quantidade.");
+            if (ProdutoValidador.validarQuantidade(qtdStr)) {
+                return Integer.parseInt(qtdStr);
             }
         }
-        return quantidade;
     }
 
     public int obterIdProduto() {
@@ -70,39 +56,29 @@ public class ProdutoView {
     }
 
     public double validarPreco(double precoAtual) {
-        double preco = -1;
-        while (preco <= 0) {
-            try {
-                System.out.print("Preço (" + precoAtual + "): ");
-                String precoStr = sc.nextLine();
-                preco = precoStr.isBlank() ? precoAtual : Double.parseDouble(precoStr);
-
-                if (ProdutoValidador.validarPreco(preco)) {
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("⚠️ Por favor, insira um valor numérico válido para o preço.");
+        while (true) {
+            System.out.print("Preço (" + precoAtual + "): ");
+            String precoStr = sc.nextLine();
+            if (precoStr.isBlank()) {
+                return precoAtual;
+            }
+            if (ProdutoValidador.validarPreco(precoStr)) {
+                return Double.parseDouble(precoStr);
             }
         }
-        return preco;
     }
 
     public int validarQuantidade(int quantidadeAtual) {
-        int quantidade = -1;
-        while (quantidade < 0) {
-            try {
-                System.out.print("Quantidade (" + quantidadeAtual + "): ");
-                String qtdStr = sc.nextLine();
-                quantidade = qtdStr.isBlank() ? quantidadeAtual : Integer.parseInt(qtdStr);
-
-                if (ProdutoValidador.validarQuantidade(quantidade)) {
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("⚠️ Por favor, insira um valor numérico válido para a quantidade.");
+        while (true) {
+            System.out.print("Quantidade (" + quantidadeAtual + "): ");
+            String qtdStr = sc.nextLine();
+            if (qtdStr.isBlank()) {
+                return quantidadeAtual;
+            }
+            if (ProdutoValidador.validarQuantidade(qtdStr)) {
+                return Integer.parseInt(qtdStr);
             }
         }
-        return quantidade;
     }
 
     public void exibirMensagem(String mensagem) {
