@@ -41,4 +41,18 @@ public class ProdutoValidador {
             return false;
         }
     }
+
+    public static boolean validarId(String idStr) {
+        try {
+            int id = Integer.parseInt(idStr);
+            if (id <= 0) {
+                System.out.println("O ID do produto deve ser um número positivo.");
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Por favor, insira um número válido para o ID.");
+            return false;
+        }
+    }
 }

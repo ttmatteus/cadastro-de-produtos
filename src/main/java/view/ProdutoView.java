@@ -45,12 +45,15 @@ public class ProdutoView {
     }
 
     public int obterIdProduto() {
-        System.out.print("Digite o ID do produto: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-        return id;
-    }
+        while (true) {
+            System.out.print("Digite o ID do produto: ");
+            String idStr = sc.nextLine();
 
+            if (ProdutoValidador.validarId(idStr)) {
+                return Integer.parseInt(idStr);
+            }
+        }
+    }
     public String obterNomeProdutoExistente(Produto existente) {
         String nome;
         while (true) {
